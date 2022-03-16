@@ -1,0 +1,78 @@
+.status-game {
+  display: flex;
+  position: absolute;
+  height: 70px;
+  right: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  z-index: 31;
+  box-shadow: 0 10px 50px #4a68843d;
+  border-bottom: 1px solid #79CADC;
+  flex-direction: column;
+  transition: all .3s ease;
+  top: -20%;
+
+  &.active {
+    top: 0;
+  }
+
+  p {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+
+    &.winner-x {
+      color: #3b88d6;
+    }
+
+    &.winner-o {
+      color: #3ebad0;
+    }
+
+    &.no-winner {
+      color: #a1a1a1;
+    }
+  }
+
+  span {
+    position: relative;
+    width: 30px;
+    max-height: 80px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .circle {
+    &:before {
+      content: "";
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      border: 3px solid #3ebad0;
+      border-radius: 25px;
+    }
+
+  }
+
+  .close {
+
+    &:before, &:after {
+      content: "";
+      border-radius: 8px;
+      background-color: #3b88d6;
+      position: absolute;
+      transform: rotate(45deg);
+      width: 20px;
+      height: 3px;
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+
+  }
+}
