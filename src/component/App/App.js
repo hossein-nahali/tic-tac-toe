@@ -13,6 +13,7 @@ function App() {
     const [cells, setCells] = useState(Array(9).fill(''));
     const [countClick, setCountClick] = useState(0);
     const [winner, setWinner] = useState('');
+    const [menu, setMenu] = useState(false);
 
     const checkWinner = (item) => {
         const combos = [
@@ -60,6 +61,24 @@ function App() {
 
         setCells(item)
     }
+
+    const reset_game = () => {
+        // reset all state
+        setTurn('x')
+        setCells(Array(9).fill(''))
+        setCountClick(0)
+        setWinner('')
+    }
+
+    const toggle_menu = (mode) => {
+        // toggle menu
+
+        if (mode) {
+            setMenu(mode)
+            return;
+        }
+        setMenu(!menu)
+    }
     return (
         <Container className={'h-100'}>
             <Row className={'h-100'}>
@@ -67,11 +86,11 @@ function App() {
                     <Box>
                         <div className={`parent ${winner ? 'end-game' : ''}`}>
                             {<Status player={winner}/>}
-                            <Header/>
+                            <Header is_active_menu={menu} toggle_menu={toggle_menu}/>
                             <Table handler={click} turn={cells}/>
                             <Turn turn={turn}/>
                         </div>
-                        <Footer/>
+                        <Footer winner={winner} reset={reset_game} turn={turn} toggle_menu={toggle_menu}/>
                     </Box>
                 </Col>
             </Row>
